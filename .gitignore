@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+*.sqlite3
+*.db
+instance/
+logs/
+*.log
+*.bak
+*.cache
+
+# Node.js
+node_modules/
+bower_components/
+build/
+dist/
+.cache/
+coverage/
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Editor and OS-specific files
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.iml
+
+# Test/Debugging
+.pytest_cache/
+*.pid
+.ipynb_checkpoints
+
+# Lock files
+yarn.lock
+package-lock.json

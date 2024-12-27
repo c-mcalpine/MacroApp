@@ -1,0 +1,43 @@
+# Byte-compiled Python files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+env/
+venv/
+.venv/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+logs/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints
+
+# Cache files
+*.cache
+*.bak
+*.swp
+.cache/
+.pip-cache/
+
+# Pytest
+.pytest_cache/
+
+# Database files
+*.sqlite3
+*.db
+
+# IDE/Editor settings
+.vscode/
+.idea/
+*.iml
+.DS_Store
+
+# Flask specific
+instance/
+*.pid
