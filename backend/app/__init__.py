@@ -5,7 +5,7 @@ from flask_migrate import Migrate  # Add Flask-Migrate
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+load_dotenv("C:\\Users\\CMcAlpine\\VS Code - Macro\\shared\\.env")
 
 TWILIO_PHONE_NUMBER = os.getenv("TWILIO_PHONE_NUMBER")
 

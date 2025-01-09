@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 from dotenv import load_dotenv
 from flask import Blueprint, request, jsonify, Flask
 from flask_cors import cross_origin
@@ -12,7 +13,7 @@ from . import db
 from .yelp_client import get_yelp_reviews
 
 api_blueprint = Blueprint('api', __name__)
-load_dotenv()
+load_dotenv("C:\\Users\\CMcAlpine\\VS Code - Macro\\shared\\.env")
 
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
@@ -20,6 +21,10 @@ TWILIO_PHONE_NUMBER = os.getenv("TWILIO_PHONE_NUMBER")
 client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 otp_storage = {}
+
+# temp data
+EXCEL_FILE_PATH = "C:\\Users\\CMcAlpine\\OneDrive - Arborverde\\macro_data.xlsx"
+data = pd.read_excel(EXCEL_FILE_PATH)
 
 # Accounts
 @api_blueprint.route('/accounts', methods=['POST'])
@@ -151,3 +156,16 @@ def verify_otp():
         return jsonify({'token': 'your-jwt-token'}), 200
     else:
         return jsonify({'error': 'Invalid OTP'}), 401
+
+# temp functions for data extraction
+# Extract unique menu meals
+@api_blueprint.route('/menu-meals', methods=['GET'])
+def get_menu_meals():
+    menu_meals = data['Menu Meal'].drop_duplicates().tolist()
+    return jsonify(menu_meals)
+
+# Get ingredients for a specific meal
+@api_blueprint.route('/ingredients/<menu_meal>', methods=['GET'])
+def get_ingredients(menu_meal):
+    ingredients = data[data['Menu Meal'] == menu_meal]
+    return jsonify(ingredients.to_dict(orient='records'))

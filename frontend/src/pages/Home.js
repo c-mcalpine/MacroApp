@@ -7,14 +7,24 @@ const Home = () => {
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
-    // Fetch restaurant and meal recommendation data
-    fetch('/api/restaurants')
+    // Fetch restaurant data
+    fetch('http://127.0.0.1:5000/api/restaurants')
       .then((res) => res.json())
       .then((data) => setRestaurants(data));
 
-    fetch('/api/recommendations')
+    // Fetch meal recommendations
+    fetch('http://127.0.0.1:5000/api/menu-meals')
       .then((res) => res.json())
-      .then((data) => setRecommendations(data));
+      .then((data) =>
+        setRecommendations(
+          data.map((meal) => ({
+            name: meal, // Meal name
+            description: `Customize your own delicious ${meal}!`, // Placeholder description
+            imageUrl: '/images/burritobowl.jpg', // Placeholder image URL
+          }))
+        )
+      )
+      .catch((err) => console.error('Error fetching recommendations:', err));
   }, []);
 
   return (

@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import Cart from './pages/Cart';
 import FoodOptions from './pages/FoodOptions';
 import Recommendations from './pages/Recommendations';
+import CustomizeMeal from './pages/CustomizeMeal';
 import Login from './pages/Login';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     alert('Login successful!');
     window.location.href = '/';
   };
+
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
@@ -30,6 +32,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/food-options" element={<FoodOptions />} />
             <Route path="/recommendations" element={<Recommendations />} />
+            <Route path="/customize/:mealName" element={<CustomizeMeal />} />
             <Route path="/login" element={<Login onAuthSuccess={handleAuthSuccess} />} />
           </Routes>
         </main>
